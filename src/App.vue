@@ -6,8 +6,40 @@
 
 <script>
 export default {
+  data() {
+    return {
+      page: 1,
+      bottom: false,
+    }
+  },
+  watch: {
+    bottom(bottom) {
+      if (bottom) {
+        this.getPokemonCards()
+      }
+    }
+  },
   async mounted() {
-    this.$store.dispatch("getPokemonCards");
+    document.addEventListener('scroll', () => {
+      this.bottom = this.bottomVisible()
+    })
+    this.getPokemonCards()
+  },
+  methods: {
+    getPokemonCards() {
+      this.$store.dispatch("getPokemonCards", { page: this.page });
+      this.page++;
+    },
+    bottomVisible() {
+      if(document.getElementById('infinite-list')) {
+        const scrollY = window.scrollY
+        const visible = document.documentElement.clientHeight
+        const pageHeight = document.documentElement.scrollHeight
+        const bottomOfPage = visible + scrollY >= pageHeight
+        return bottomOfPage || pageHeight < visible
+      } 
+      return false
+    }
   }
 };
 </script>
@@ -47,5 +79,6 @@ export default {
 h1 {
   @include stroke(5, #2f67af);
   color: #ffcc01;
+  font-size: 3rem;
 }
 </style>

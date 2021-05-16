@@ -17,14 +17,14 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    getPokemonCards: async ({ commit }) => {
-      let { data: responseData } = await pokemonService.findAll()
+    getPokemonCards: async ({ commit }, page) => {
+      let { data: responseData } = await pokemonService.findAll(page)
       commit('addPokemonCards', responseData.data)
     }
   },
 	mutations: {
     addPokemonCards(state, payload) {
-      state.pokemonsCards = [...payload, ...state.pokemonsCards]
+      state.pokemonsCards = [...state.pokemonsCards, ...payload]
     }
   }
 })

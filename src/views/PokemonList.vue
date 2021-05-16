@@ -4,7 +4,7 @@
       <h1>Pokemon's Cards</h1>
       <PokemonSearch @filterPokemon="filterPokemon" />
     </div>
-    <div class="container">
+    <div class="container" id="infinite-list">
       <PokemonCard
         v-for="(pokemon, index) in pokemonsCardsList"
         :key="index"
