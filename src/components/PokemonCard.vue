@@ -5,28 +5,19 @@
     <div class="card-name">
       {{ pokemon.name }}
     </div>
-    <div class="card-types">
-      Tipo(s):
-      <div
-        v-for="type in pokemon.types"
-        :key="type"
-        :style="{
-          'background-color': `${types[type]}`,
-          width: '85px',
-          margin: '0px 5px',
-        }"
-      >
-        {{ type }}
-      </div>
-    </div>
+    <PokemonTypes :types="pokemon.types"/>
     <br />
   </div>
 </template>
 
 <script>
+import PokemonTypes from "./PokemonTypes.vue";
 export default {
   props: {
-    pokemon: Object
+    pokemon: Object,
+  },
+  components: {
+    PokemonTypes
   },
   data() {
     return {
@@ -77,9 +68,5 @@ export default {
   font-weight: bold;
   font-size: 25px;
   margin: 5px auto;
-}
-
-.card-types {
-  display: inline-flex;
 }
 </style>
