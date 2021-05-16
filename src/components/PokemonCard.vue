@@ -1,15 +1,48 @@
 <template>
   <div class="card">
-    
+    <div class="card-id">#{{ pokemon.id }}</div>
+    <img class="card-image" :src="`${pokemon.images.small}`" alt="" />
+    <div class="card-name">
+      {{ pokemon.name }}
+    </div>
+    <div class="card-types">
+      Tipo(s):
+      <div
+        v-for="type in pokemon.types"
+        :key="type"
+        :style="{
+          'background-color': `${types[type]}`,
+          width: '85px',
+          margin: '0px 5px',
+        }"
+      >
+        {{ type }}
+      </div>
+    </div>
+    <br />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["pokemon"],
+  props: {
+    pokemon: Object
+  },
   data() {
     return {
-
+      types: {
+        Colorless: "#A8A77A",
+        Darkness: "#705746",
+        Dragon: "#6F35FC",
+        Fairy: "D685AD",
+        Fighting: "#C22E28",
+        Fire: "#EE8130",
+        Grass: "#7AC74C",
+        Lightning: "#F7D02C",
+        Metal: "#B7B7CE",
+        Psychic: "#F95587",
+        Water: "#6390F0",
+      },
     };
   },
 };
@@ -30,4 +63,23 @@ export default {
   cursor: pointer;
 }
 
+.card-id {
+  float: left;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.card-image {
+  max-height: 300px;
+}
+
+.card-name {
+  font-weight: bold;
+  font-size: 25px;
+  margin: 5px auto;
+}
+
+.card-types {
+  display: inline-flex;
+}
 </style>
