@@ -66,7 +66,7 @@ export default {
   margin: 0 auto;
   align-content: space-between;
 
-  width: 70%;
+  width: 60%;
   max-height: 100vh;
 
   box-shadow: 0px 3px 15px rgba(100, 100, 100, 0.5);
@@ -78,7 +78,7 @@ export default {
 
 img {
   width: 450px;
-  margin: 20px;
+  margin: 20px 60px 20px 20px;
 }
 
 @media (max-width: 800px) {
@@ -89,7 +89,7 @@ img {
 }
 
 .pokemon-details {
-  font-size: 25px;
+  font-size: 35px;
   text-align: initial;
   align-self: center;
 }
