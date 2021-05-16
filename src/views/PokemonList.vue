@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1>Pokemon's Cards</h1>
+    <div class="header">
+      <h1>Pokemon's Cards</h1>
+      <PokemonSearch @filterPokemon="filterPokemon" />
+    </div>
     <div class="container">
       <PokemonCard
         v-for="(pokemon, index) in pokemonsCardsList"
@@ -14,31 +17,43 @@
 
 <script>
 import PokemonCard from "@/components/PokemonCard.vue";
-
+import PokemonSearch from "../components/PokemonSearch.vue";
 export default {
   components: {
     PokemonCard,
+    PokemonSearch,
   },
   computed: {
     pokemonsCardsList() {
-      return this.$store.getters.pokemonsCards;
+      return this.$store.getters.pokemonsCards.filter((e) => {
+        if (e.name.toLowerCase().indexOf(this.searchQuery.toLowerCase()) === -1)
+          return false;
+        return true;
+      });
     },
   },
   data() {
     return {
       pokemons: [],
-      searchQuery: ''
+      searchQuery: "",
     };
   },
   methods: {
     goDetails(pokemon) {
-      this.$router.push({ name: 'Pokemon Detail', params: { id: pokemon.id } })
-    }
-  }
+      this.$router.push({ name: "Pokemon Detail", params: { id: pokemon.id } });
+    },
+    filterPokemon(pokemonName) {
+      this.searchQuery = pokemonName;
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+
+.header {
+  display: inline-block;
+}
 
 .container {
   display: flex;

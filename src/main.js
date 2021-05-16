@@ -1,3 +1,5 @@
+import 'font-awesome/css/font-awesome.css';
+
 import App from './App.vue'
 import Vue from 'vue'
 import router from '@/router'
