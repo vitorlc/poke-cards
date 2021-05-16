@@ -1,15 +1,5 @@
 <template>
   <div id="app">
-    <PokemonList />
+    <router-view />
   </div>
 </template>
-
-<script>
-import PokemonList from "./views/PokemonList.vue";
-export default {
-	name: "App",
-	components: {
-		PokemonList,
-	},
-};
-</script>

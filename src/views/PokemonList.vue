@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import PokemonCard from "../components/PokemonCard.vue";
-import pokemonService from "../services/pokemon";
+import PokemonCard from "@/components/PokemonCard.vue";
+import pokemonService from "@/services/pokemon";
 
 export default {
 	components: {
