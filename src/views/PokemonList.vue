@@ -1,5 +1,5 @@
 <template>
-  <div class="main">
+  <div>
     <h1>Pokemon's Cards</h1>
     <div class="container">
       <PokemonCard
@@ -32,20 +32,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url("https://fonts.googleapis.com/css?family=Acme");
-
-.main {
-  padding: 10px;
-  min-height: 100vh;
-  background: radial-gradient(#e7c97b, #f7c64a);
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	
-  font-family: "Acme", arial;
-  font-size: 1rem;
-  font-weight: normal;
-}
 
 .container {
   display: flex;
@@ -62,7 +48,4 @@ export default {
   }
 }
 
-h1 {
-  color: #f1f1f1;
-}
 </style>
