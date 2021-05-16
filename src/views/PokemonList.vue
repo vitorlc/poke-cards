@@ -3,9 +3,10 @@
     <h1>Pokemon's Cards</h1>
     <div class="container">
       <PokemonCard
-        v-for="(pokemon, index) in pokemons"
+        v-for="(pokemon, index) in pokemonsCardsList"
         :key="index"
         :pokemon="pokemon"
+        @click.native="goDetails(pokemon)"
       />
     </div>
   </div>
@@ -25,7 +26,13 @@ export default {
   },
   data() {
     return {
-      pokemons: []
+      pokemons: [],
+      searchQuery: ''
+    };
+  },
+  methods: {
+    goDetails(pokemon) {
+      this.$router.push({ name: 'Pokemon Detail', params: { id: pokemon.id } })
     }
   }
 };
@@ -35,17 +42,16 @@ export default {
 
 .container {
   display: flex;
-	flex-flow: row wrap;
-	margin: 0 auto;
-	justify-content: center;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  justify-content: center;
 }
 
 @media (max-width: 600px) {
   .container {
     flex-flow: row nowrap;
     overflow-x: auto;
-		justify-content: flex-start;
+    justify-content: flex-start;
   }
 }
-
 </style>
