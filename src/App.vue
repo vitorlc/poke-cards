@@ -4,6 +4,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  async mounted() {
+    this.$store.dispatch("getPokemonCards");
+  }
+};
+</script>
+
+
 <style lang="scss">
 @import url("https://fonts.googleapis.com/css?family=Acme");
 
@@ -22,10 +31,10 @@
 
 @function stroke($stroke, $color) {
   $shadow: ();
-  $from: $stroke*-1;
+  $from: $stroke * -1;
   @for $i from $from through $stroke {
-   @for $j from $from through $stroke {
-      $shadow: append($shadow, $i*1px $j*1px 0 $color, comma);
+    @for $j from $from through $stroke {
+      $shadow: append($shadow, $i * 1px $j * 1px 0 $color, comma);
     }
   }
   @return $shadow;
@@ -36,7 +45,7 @@
 }
 
 h1 {
-	@include stroke(5, #2f67af);
-	color: #ffcc01 ;
+  @include stroke(5, #2f67af);
+  color: #ffcc01;
 }
 </style>

@@ -13,15 +13,15 @@
 
 <script>
 import PokemonCard from "@/components/PokemonCard.vue";
-import pokemonService from "@/services/pokemon";
 
 export default {
-	components: {
-		PokemonCard,
-	},
-  async created() {
-    let {data: responseData} = await pokemonService.findAll()
-    this.pokemons = responseData.data
+  components: {
+    PokemonCard,
+  },
+  computed: {
+    pokemonsCardsList() {
+      return this.$store.getters.pokemonsCards;
+    },
   },
   data() {
     return {
