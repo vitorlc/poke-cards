@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ModalAttack :pokemonAttack="selectedAttack" v-if="selectedAttack" @closeModalAttack="closeModalAttack"/>
     <h1 class="link_cursor" @click="goBack">&#60; Voltar</h1>
     <h1>{{ pokemon.name }}</h1>
     <div class="container">
@@ -21,7 +22,9 @@
         </div>
         <div>
           Ataque(s):
-          {{ pokemon.attacks.map((attack) => `${attack.name}`).join(", ") }}
+          <div v-for="(attack, index) in pokemon.attacks" :key="index" class="pokemon-attacks" @click="openModalAttack(attack)">
+            {{attack.name}}
+          </div>
         </div>
       </div>
     </div>
@@ -30,12 +33,14 @@
 
 <script>
 import PokemonTypes from "@/components/PokemonTypes.vue";
+import ModalAttack from '../components/ModalAttack.vue';
 export default {
   props: {
     id: String,
   },
   components: {
     PokemonTypes,
+    ModalAttack
   },
   async created() {
     const response = this.$store.getters.pokemonCard(this.id);
@@ -44,6 +49,7 @@ export default {
   data() {
     return {
       pokemon: {},
+      selectedAttack: null
     };
   },
   methods: {
@@ -55,6 +61,12 @@ export default {
     goBack() {
       this.$router.push({ name: "Pokemon List" });
     },
+    openModalAttack(attack) {
+      this.selectedAttack = attack;
+    },
+    closeModalAttack() {
+      this.selectedAttack = null
+    }
   },
 };
 </script>
@@ -97,4 +109,12 @@ img {
 .link_cursor {
   cursor: pointer;
 }
+
+.pokemon-attacks {
+  width: '100%';
+  padding: '0px 5px';
+  margin: '0px 5px';
+  cursor: pointer;  
+}
+
 </style>
